@@ -1,0 +1,17 @@
+task hello {
+	doLast {
+		println 'hello world'
+	}
+}
+
+task upper << {
+    String someString = 'mY_nAmE'
+    println "Original: " + someString
+    println "Upper case: " + someString.toUpperCase()
+}
+task oneDepend(dependsOn: 'hello') << {
+    println "one depend"
+}
+task manyDepends(dependsOn: ['hello', 'upper', 'oneDepend']) << {
+    println "I'm Gradle"
+}
